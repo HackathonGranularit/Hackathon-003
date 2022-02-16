@@ -83,7 +83,7 @@ The Links to the hosted branches are in the 'Important Links' section of this do
 
          AIzaSyBs8oFLQriZkDsje3Dov_BiZG1w6C_jENk
 
-* The Hosted API Links:
+* The Hosted Links:
 
     Team 1:
 
