@@ -18,7 +18,7 @@ function Customer() {
 
   return (
     <MainDiv>
-        <TopDiv><h3>Make an order</h3><div><SelectorBox people={customerArr} selectedCustomer={selectedCustomer} setSelectedCustomer={setSelectedCustomer}/></div></TopDiv>
+        <TopDiv><h3>Make an order (Team 2 Branch)</h3><div><SelectorBox people={customerArr} selectedCustomer={selectedCustomer} setSelectedCustomer={setSelectedCustomer}/></div></TopDiv>
       <div>
       <input
               id="itemName"
