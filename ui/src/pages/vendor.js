@@ -6,7 +6,7 @@ import styled from "styled-components";
 function Vendor() {
   return (
     <MainDiv>
-      <h3>Vendor</h3>
+      <h3>Vendor (Team 1 Branch)</h3>
       <OrdersList>
         <Order>
           <div>
