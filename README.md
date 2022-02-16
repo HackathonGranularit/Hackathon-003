@@ -87,13 +87,13 @@ The Links to the hosted branches are in the 'Important Links' section of this do
 
     Team 1:
 
-        API - 
-        UI - 
+        API - https://team1-api-hackathon-2022.onrender.com
+        UI - https://team1-hackathon-2022.netlify.app
 
     Team 2:
 
-        API - 
-        UI - 
+        API - https://team2-api-hackathon-2022.onrender.com
+        UI - https://team2-hackathon-2022.netlify.app
 
 
 
