@@ -23,10 +23,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express()
-
-  app.use(cors());
-  // parse requests of content-type - application/json
-  app.use(bodyParser.json());
+app.use(cors());
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
 //Body parser
 app.use(express.json());
 
@@ -36,27 +35,10 @@ require("./config/db")
 
 const port = 8999
 
-app.get("/", (req, res) => {
 
-  const message = {
-    from: "waruodaniel@gmail.com",
-    to: "danielavexus@gmail.com",
-    subject: "Test GRANULAR HACKATHON",
-    text: "We are TESTING THIS"
-  }
-  const onSuccess = () => {
-    console.log("I am SUCCESS")
-  }
-  const onFail = () => {
-
-  }
-  sendEmail(message, onSuccess, onFail)
-
-  res.send("Hello World!")
-})
 const customer = require('./routes/customers')
 const order = requires('./routes/order')
-const {sendEmail} = require("./helpers");
+const { sendEmail } = require("./helpers");
 const Console = require("console");
 
 app.use('/api/customers', customer)
