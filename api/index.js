@@ -45,11 +45,15 @@ app.use(function (req, res, next) {
 
 const port = process.env.PORT || 5010;
 
+//Default route
 app.get('/', (req, res) => {
     res.send('Hello World!');
-})
+});
 //Add our api router
 app.use('/api', apiRouter);
+
+//Add not found handler
+app.use((req, res) => res.status(404).json({ message: "404 Route not found" }));
 
 
 const startApp = () => {
@@ -64,7 +68,6 @@ const startApp = () => {
             console.error(e);
         });
 }
-
 startApp();
 
 

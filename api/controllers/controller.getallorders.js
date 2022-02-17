@@ -6,7 +6,7 @@ const getOrders = async (req,res) => {
         const orders =  await Order.find();
         res.status(200).json(orders);
     } catch (error) {
-        res.status(500).json({"message":"Unable to get orders"});
+        res.status(500).json({message:"Unable to get orders"});
     }
 }
 
