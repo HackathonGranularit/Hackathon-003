@@ -21,7 +21,7 @@ function Customer() {
         url: `${process.env.REACT_APP_BASE_URL}/api/orders`,
         data: {
           gasSize:size,
-          customerID: selectedCustomer.id,
+          customerId: selectedCustomer.id,
           location:selectedCustomer.location
         },
       });
