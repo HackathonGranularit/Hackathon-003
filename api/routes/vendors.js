@@ -1,6 +1,5 @@
 const express = require('express')
 const { getVendor, getVendorById } = require('../controllers/vendor')
-const {sendEmail} = require('../actions/sendEmail')
 const router = express.Router()
 
 router.get('/', (req,res) => {
