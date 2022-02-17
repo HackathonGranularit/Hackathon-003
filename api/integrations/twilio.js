@@ -18,7 +18,7 @@ const sendEmail = (message, onSuccess, onFail) => {
   transporter.sendMail(message, function (err, info) {
       if (err) {
         console.log(err)
-        onSuccess(err)
+        // onSuccess(err)
       } else {
         console.log(info)
         onFail(info);
