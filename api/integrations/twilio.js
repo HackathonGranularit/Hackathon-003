@@ -1,8 +1,4 @@
 const nodemailer = require('nodemailer');
-
-
-
-
 const axios = require('axios')
 
 let transporter = nodemailer.createTransport({
@@ -27,3 +23,5 @@ const sendEmail = (message, onSuccess, onFail) => {
     }
   )
 }
+
+module.exports= sendEmail

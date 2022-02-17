@@ -1,9 +1,8 @@
-//@ts-check
 const getDistance = require('../integrations/gcp');
 const asyncHandler = require('../middleware/async');
 const Order = require('../models/Orders');
+const { getCustomerById } = require('./services/customer');
 const { fetchVender } = require('./services/vender');
-
 
 module.exports.createOrder = asyncHandler(async (req,res,next) => {
 

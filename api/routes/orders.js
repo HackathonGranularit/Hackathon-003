@@ -7,10 +7,6 @@ router.post('/',(req,res) => {
     createOrder(req,res)
 })
 
-router.get('/:id', (req,res) => {
-    getOrderById(req,res)
-})
-
 router.get('/', (req,res) => {
     getOrders(req,res)
 })
@@ -18,5 +14,11 @@ router.get('/', (req,res) => {
 router.put('/:id',(req,res) => {
     modifyOrder(req,res)
 })
+
+router.get('/:id', (req,res) => {
+    getOrderById(req,res)
+})
+
+
 
 module.exports = router
