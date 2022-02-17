@@ -33,12 +33,11 @@ app.use(express.json());
 
 require("./config/db")
 
-const port = 8999
+const port = 8080
 
 
 const customer = require('./routes/customers')
-const order = requires('./routes/order')
-const { sendEmail } = require("./helpers");
+const order = require('./routes/orders')
 const Console = require("console");
 
 app.use('/api/customers', customer)
