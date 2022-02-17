@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
 import Select from "react-select"
 const mongoose = require("mongoose");
+const axios = require("axios");
 
 // this is the default customer array
 const customerArr = [
@@ -25,14 +26,17 @@ function Customer() {
       orderId: String(mongoose.Types.ObjectId()),
       gasSize: gasSize,
       distance: 90,
-      customerId: selectedCustomer._id,
+      customerId: selectedCustomer.id,
     }
 
-    console.log(order)
+    axios.post("https://team2-api-hackathon-2022.onrender.com/api/createOrder", order)
+      .then(res => {
+        console.log(res.data)
+      })
   }
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/customers")
+    fetch("https://team2-api-hackathon-2022.onrender.com/api/customers")
       .then(res => res.json())
       .then(data => {
         setAllCustomers(data)
