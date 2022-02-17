@@ -1,14 +1,14 @@
 const express = require('express')
-const { getCustomers, getCustomerById } = require('../controllers/customer')
+const { getVendor, getVendorById } = require('../controllers/vendor')
 const {sendEmail} = require('../actions/sendEmail')
 const router = express.Router()
 
 router.get('/', (req,res) => {
-    getCustomers(req,res)
+    getVendor(req,res)
 })
 
 router.get('/:id', (req,res) => {
-    getCustomerById(req,res)
+    getVendorById(req,res)
 })
 router.get('/mail/:id', (req,res) => {
     sendEmail(req.res)

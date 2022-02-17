@@ -1,31 +1,25 @@
 // this will render the customer page
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
 
-// this is the default customer array
-const customerArr = [
-  {
-    id: 999,
-    name: 'Daniel King',
-    email:'waruodaniel@gmail.com'
-  },
-  {
-    id: 888,
-    name: 'King Julian',
-    email:'kingjulian@gmail.com'
-  },
-]
 
 function Customer() {
   // this is the state for the customer array
   const [selectedCustomer, setSelectedCustomer] = useState(undefined)
+  const [customers, setCustomers] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:8999/api/customers')
+      .then(response => response.json())
+      .then(data => setCustomers(data.data))
+  })
   return (
     <MainDiv>
       <TopDiv><h3>Make an order (Team 1 Branch)</h3>
         <div>
-          <SelectorBox people={customerArr}
+          <SelectorBox people={customers}
                        selectedCustomer={selectedCustomer}
                        setSelectedCustomer={setSelectedCustomer}/></div>
       </TopDiv>
