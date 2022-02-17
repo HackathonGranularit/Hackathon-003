@@ -21,6 +21,8 @@
 const express = require("express")
 
 const app = express()
+//Body parser
+app.use(express.json());
 
 //connect to db
 
@@ -31,6 +33,9 @@ const port = 8000
 app.get("/", (req, res) => {
   res.send("Hello World!")
 })
+const customer = require('./routes/customers')
+
+app.use('/api/customers',customer)
 
 app.listen(port, () => {
   console.log(`api running on port ${port}`)
