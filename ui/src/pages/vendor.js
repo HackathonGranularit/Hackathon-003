@@ -16,7 +16,7 @@ function Vendor() {
     }
 
     const getDistance = async (vendorLocation, customerLocation) => {
-      
+
     }
 
     const getOrders = async () => {
@@ -33,6 +33,24 @@ function Vendor() {
     setOrders(orders);
 
   }, [])
+
+  const dispatchOrder = async (id) => {
+    // alert("Confirm order Dispatch")
+    const payload = {
+      id:id
+    }
+    const response = await fetch(`${baseAPIUrl}/orders`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    })
+
+    const data = await response.json();
+
+    return data
+  }
 
   return (
     <MainDiv>
@@ -100,8 +118,8 @@ function Vendor() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.state}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.customerId}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Dispatch Order
+                        <a href="#" className="text-indigo-600 hover:text-indigo-900" onClick={async () => await dispatchOrder(order.orderID)}>
+                          Mark Order as Dispatched
                         </a>
                       </td>
                     </tr>
