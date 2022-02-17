@@ -1,4 +1,5 @@
 const getDistance = require('../integrations/gcp');
+const sendEmail = require('../integrations/twilio');
 const asyncHandler = require('../middleware/async');
 const Order = require('../models/Orders');
 const { getCustomerById } = require('./services/customer');
@@ -22,6 +23,7 @@ module.exports.createOrder = asyncHandler(async (req,res,next) => {
     }
     console.log(order)
     const createdOrder = await Order.create(order)
+    sendEmail(`Created order:${JSON.stringify(createdOrder)}`)
     res.status(201).json({ success: true, data: createdOrder });
 
 })
@@ -70,6 +72,9 @@ module.exports.modifyOrder = asyncHandler(async(req,res,next) => {
       if(!order){
         res.status(404).json({ data: `Order id ${id} not found` });
       }
-
+      if(req.body.state === 'Dispatched'){
+        sendEmail(`Dispatched order: ${id} `)
+        res.status(200).json({ success: true});
+      }
       res.status(200).json({ success: true, data: order });
 })
