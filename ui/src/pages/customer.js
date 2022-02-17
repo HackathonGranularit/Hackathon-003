@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
-<<<<<<< HEAD
 import axios from "axios";
 
 function Customer() {
@@ -29,20 +28,6 @@ function Customer() {
       .then((response) => response.json())
       .then((data) => setCustomers(data.data));
   }, []);
-=======
-
-
-function Customer() {
-  // this is the state for the customer array
-  const [selectedCustomer, setSelectedCustomer] = useState(undefined)
-  const [customers, setCustomers] = useState([])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/customers`)
-      .then(response => response.json())
-      .then(data => setCustomers(data.data))
-  },[setCustomers])
->>>>>>> c0820d5e247aae14e0a87fa6c519a50a75e341fe
   return (
     <MainDiv>
       <TopDiv>
