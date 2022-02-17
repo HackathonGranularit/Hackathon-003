@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!")
 })
 const customer = require('./routes/customers')
-const order = requires('./routes/order')
+const order = require('./routes/orders')
 const { sendEmail } = require("./helpers");
 const Console = require("console");
 

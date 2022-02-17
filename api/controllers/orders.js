@@ -1,4 +1,5 @@
-const Order = require('../models/Orders')
+const Order = require('../models/Orders');
+const asyncHandler = require('../middleware/async');
 
 module.exports.createOrder = asyncHandler(async (req,res,next) => {
 
