@@ -4,10 +4,10 @@ const Customer = require("../models/Customer");
 const getAllCustomers = async (req, res) => {
   try {
     const allCustomers = await Customer.find();
-    res.status(200).res.send(allCustomers);
+    res.status(200).json(allCustomers);
   } catch (e) {
       //Catch any errors 
-    res.status(500).res.send({ message: 'Something wrong happened' });
+    res.status(500).res.json({ message: 'Something wrong happened' });
     console.error(e); 
     }
 };
