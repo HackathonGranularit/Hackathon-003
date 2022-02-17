@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 function Vendor() {
   const [orders, setOrders] = useState([])
-  const baseAPIUrl = "http://localhost:8000/api"
+  const baseAPIUrl = "https://team2-api-hackathon-2022.onrender.com/api"
 
   useEffect(async () => {
 
