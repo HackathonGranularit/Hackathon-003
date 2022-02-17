@@ -26,14 +26,15 @@ const mongoose = require('mongoose');
 const apiRouter = require('./routes/router.api');
 
 const app = express();
-const port = 3000;
+
+const port = process.env.PORT|8000;
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
 //Allow our api to return json
-app.use(express.jso);
+app.use(express.json());
 //Add our api router
 app.use('/api', apiRouter);
 

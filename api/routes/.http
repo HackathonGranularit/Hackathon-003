@@ -1,0 +1,11 @@
+###
+GET http://localhost:8000/api/customers
+Content-Type: application/json
+
+###
+GET http://localhost:8000/api/orders
+Content-Type: application/json
+
+###
+GET http://localhost:8000/api/
+Content-Type: application/json
