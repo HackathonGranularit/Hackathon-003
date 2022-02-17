@@ -19,31 +19,31 @@
 
 // import express
 const express = require("express")
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const bodyParser = require("body-parser")
+const cors = require("cors")
 
 const app = express()
-app.use(cors());
+app.use(cors())
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 //Body parser
-app.use(express.json());
+app.use(express.json())
 
 //connect to db
 
 require("./config/db")
 
-const port = 8999
+const port = 8080
 
+const customer = require("./routes/customers")
+const order = require("./routes/orders")
+const vendor = require("./routes/vendors")
+// const { sendEmail } = require("./helpers");
+// const Console = require("console");
 
-const customer = require('./routes/customers')
-const order = requires('./routes/order')
-const { sendEmail } = require("./helpers");
-const Console = require("console");
-
-app.use('/api/customers', customer)
-app.use('/api/orders', order)
-
+app.use("/api/customers", customer)
+app.use("/api/orders", order)
+app.use("/api/vendors", vendor)
 
 app.listen(port, () => {
   console.log(`api running on port ${port}`)
