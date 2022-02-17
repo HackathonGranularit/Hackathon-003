@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
 // const orders = [
 //   {
@@ -22,10 +23,22 @@ import styled from "styled-components";
 function Vendor() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8999/api/orders")
+    fetch("https://team1-api-hackathon-2022.onrender.com/api/orders")
       .then((response) => response.json())
       .then((data) => setOrders(data.data));
   }, []);
+
+  const handleOnClick = order => {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/orders/${order._id}`
+    axios.put(url,{...order,
+      state:"Dispatched"
+    })
+    fetch("https://team1-api-hackathon-2022.onrender.com/api/orders")
+      .then((response) => response.json())
+      .then((data) => setOrders(data.data));
+  }
+
+  
   return (
     <MainDiv>
       <h3>Vendor</h3>
@@ -78,7 +91,7 @@ function Vendor() {
                         <div className="flex items-center">
                           <div className="ml-4">
                             <div className="text-sm text-gray-500">
-                              {order.orderID}
+                              {order.orderId || order._id}
                             </div>
                           </div>
                         </div>
@@ -97,11 +110,12 @@ function Vendor() {
                         {order.state}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {order.customerID}
+                        {order.customerId}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a
                           href="#"
+                          onClick={ () => handleOnClick(order)}
                           className="text-indigo-600 hover:text-indigo-900"
                         >
                           Dispatch Order
