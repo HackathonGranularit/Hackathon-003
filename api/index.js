@@ -29,6 +29,9 @@ var corsOptions = {
   app.use(cors(corsOptions));
   // parse requests of content-type - application/json
   app.use(bodyParser.json());
+//Body parser
+app.use(express.json());
+
 //connect to db
 
 require("./config/db")
@@ -38,6 +41,9 @@ const port = 8000
 app.get("/", (req, res) => {
   res.send("Hello World!")
 })
+const customer = require('./routes/customers')
+
+app.use('/api/customers',customer)
 
 app.listen(port, () => {
   console.log(`api running on port ${port}`)
