@@ -29,7 +29,8 @@ const getDistance = (destination, origin) => {
   axios.get(url)
     .then(resp => {
       let data = resp.data.rows[0].elements[0].distance.text
-      return data
+      const dist = data.split(" ")
+      return dist[0]
     })
     .catch(err => {
         console.error(err);
