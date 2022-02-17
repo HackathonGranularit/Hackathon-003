@@ -8,7 +8,7 @@ const { fetchVender } = require('./services/vender');
 module.exports.createOrder = asyncHandler(async (req,res,next) => {
 
 
-    if(!req.body.gasSize || !req.body.customerId || !req.body.location){
+    if(!req.body.gasSize || !req.body.customerId || !req.body.location || !req.body.email){
         res.status(400).json({ success: true, data: 'Missing required field' });
     }
 
@@ -26,9 +26,9 @@ module.exports.createOrder = asyncHandler(async (req,res,next) => {
     // sendEmail(`Created order:${JSON.stringify(createdOrder)}`)
     const message = {
         from: "waruodaniel@gmail.com",
-        to: "danielavexus@gmail.com",
-        subject: "Test GRANULAR HACKATHON",
-        text: "We are TESTING THIS"
+        to: req.body.email,
+        subject: "order Received",
+        text: `This order has been received: ${JSON.stringify(order)}`
       }
       const onSuccess = () => {
         console.log("I am SUCCESS")
