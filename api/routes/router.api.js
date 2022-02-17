@@ -4,6 +4,7 @@ const getallorders = require('../controllers/controller.getallorders');
 const dispatchOrder = require('../controllers/controller.dispatchOrder');
 const {getAllCustomers, getSingleCustomer} = require('../controllers/controller.getAllCustomers');
 const { getAllVendors, getSingleVendor } = require('../controllers/controllers.vendors');
+const createOrder = require('../controllers/controller.createOrder')
 
 const apiRouter = express.Router();
 
@@ -18,6 +19,8 @@ apiRouter.route('/customers').get(getAllCustomers) //get all customers;
 apiRouter.route('/vendors').get(getAllVendors) //get all vendors;
 apiRouter.route('/vendors/:id').get(getSingleVendor) //get single vendor;
 apiRouter.route('/customer/:id').get(getSingleCustomer) //get single customer;
+apiRouter.route('/orders').get(getallorders)
+apiRouter.route('/createOrder').post(createOrder)
 
 module.exports = apiRouter;
 
