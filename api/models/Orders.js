@@ -21,6 +21,11 @@ const orderSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  placementTime: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  }
 });
 
 const Order = mongoose.model("Order", orderSchema);
