@@ -13,19 +13,24 @@ const sendEmail = async (req, res) => {
         }
     });
 
-    // use the transporter to send the email
-    let info = await transporter.sendMail({
-        from: req.body.sender,
-        to: req.body.receiver,
-        subject: req.body.subject,
-        text: req.body.email_body,
-    })
-    console.log(info)
+    try {
+        // use the transporter to send the email
+        let info = await transporter.sendMail({
+            from: req.body.sender,
+            to: req.body.receiver,
+            subject: req.body.subject,
+            text: req.body.email_body,
+        })
+        console.log(info)
 
-    res.status(200).send({
-        message: "Email sent",
-        info: info
-    });
+        res.status(200).json({
+            message: "Email sent",
+            info: info
+        });
+    } catch (error) {
+        res.status(500).json({message:"Cant send email check logs"});
+        console.error(error);
+    }
 }
 
-module.exports = { sendEmail };
+module.exports = sendEmail;

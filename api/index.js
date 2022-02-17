@@ -25,17 +25,35 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const apiRouter = require('./routes/router.api');
+const cors = require('cors');
 
 const app = express();
-app.use(bodyParser.json());
 
-const port = 8000;
+app.use(cors());
 
+// parse requests of content-type - application/json
+app.use(bodyParser.json({ limit: "50mb" }));
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+const port = process.env.PORT || 5010;
+
+//Default route
 app.get('/', (req, res) => {
     res.send('Hello World!');
-})
+});
 //Add our api router
 app.use('/api', apiRouter);
+
+//Add not found handler
+app.use((req, res) => res.status(404).json({ message: "404 Route not found" }));
 
 
 const startApp = () => {
@@ -50,7 +68,6 @@ const startApp = () => {
             console.error(e);
         });
 }
-
 startApp();
 
 
