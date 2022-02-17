@@ -33,7 +33,7 @@ app.use(express.json());
 
 require("./config/db")
 
-const port = 8080
+const port = 8999
 
 
 const customer = require('./routes/customers')

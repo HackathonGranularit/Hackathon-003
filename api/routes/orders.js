@@ -3,7 +3,7 @@ const { createOrder, getOrderById,getOrders, modifyOrder } = require('../control
 
 const router = express.Router()
 
-router.post('/',(req,res) => {
+router.post('/create',(req,res) => {
     createOrder(req,res)
 })
 
