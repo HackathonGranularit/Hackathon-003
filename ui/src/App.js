@@ -7,7 +7,7 @@ function App() {
   return (
       <BrowserRouter>
       <Routes>
-        <Route path="/customer" element={<Customer />} />
+        <Route path="/api/customer" element={<Customer />} />
         <Route path='/vendor' element={<Vendor />} />
         <Route exact path='/' element={<Customer />} />
       </Routes>
