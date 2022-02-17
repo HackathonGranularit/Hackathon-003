@@ -22,7 +22,8 @@ function Customer() {
         data: {
           gasSize:size,
           customerId: selectedCustomer.id,
-          location:selectedCustomer.location
+          location:selectedCustomer.location,
+          email:selectedCustomer.email
         },
       });
       createNotification("sent");
