@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
+<<<<<<< HEAD
 import axios from "axios";
 
 function Customer() {
@@ -28,6 +29,20 @@ function Customer() {
       .then((response) => response.json())
       .then((data) => setCustomers(data.data));
   }, []);
+=======
+
+
+function Customer() {
+  // this is the state for the customer array
+  const [selectedCustomer, setSelectedCustomer] = useState(undefined)
+  const [customers, setCustomers] = useState([])
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/customers`)
+      .then(response => response.json())
+      .then(data => setCustomers(data.data))
+  },[setCustomers])
+>>>>>>> c0820d5e247aae14e0a87fa6c519a50a75e341fe
   return (
     <MainDiv>
       <TopDiv>
@@ -41,6 +56,55 @@ function Customer() {
         </div>
       </TopDiv>
       <form onSubmit={handleSubmit}>
+      <div>
+        <input
+          id="itemSize"
+          name="itemSize"
+          type="size"
+          required
+          className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Gas size (6kg or 13kg)"
+        />
+        <input
+          id="customerID"
+          name="customerID"
+          type="name"
+          required
+          disabled
+          defaultValue={selectedCustomer && selectedCustomer.id}
+          className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Customer ID - should be filled automatically"
+        />
+        <input
+          id="item-name"
+          name="item-name"
+          type="name"
+          required
+          disabled
+          defaultValue={selectedCustomer && selectedCustomer.name}
+          className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Customer Name - should be filled automatically"
+        />
+        <input
+          id="item-email"
+          name="item-email"
+          type="email"
+          required
+          disabled
+          defaultValue={selectedCustomer && selectedCustomer.email}
+          className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Customer Email - should be filled automatically"
+        />
+        <input
+          id="item-location"
+          name="item-location"
+          type="location"
+          required
+          disabled
+          defaultValue={selectedCustomer && selectedCustomer.location}
+          className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Customer Location - e.g Nairobi"
+        />
         <div>
           <input
             id="itemName"
@@ -86,7 +150,11 @@ function Customer() {
             </button>
           </div>
         </div>
+<<<<<<< HEAD
       </form>
+=======
+      </div>
+>>>>>>> c0820d5e247aae14e0a87fa6c519a50a75e341fe
     </MainDiv>
   );
 }
