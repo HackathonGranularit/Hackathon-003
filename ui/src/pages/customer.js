@@ -1,6 +1,6 @@
 // this will render the customer page
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
 
@@ -21,6 +21,10 @@ const customerArr = [
 function Customer() {
   // this is the state for the customer array
   const [selectedCustomer, setSelectedCustomer] = useState(undefined)
+
+  useEffect(()=>{
+    fetch('http://localhost:8999/api/customers').then(response => response.json).then(data => console.log(data))
+  })
   return (
     <MainDiv>
       <TopDiv><h3>Make an order (Team 1 Branch)</h3>
