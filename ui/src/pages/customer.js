@@ -23,15 +23,16 @@ function Customer() {
         method: "post",
         url: "http://localhost:8999/api/orders/",
         data: {
-          size,
-          customer: selectedCustomer,
+          gasSize: size,
+          customerId: selectedCustomer.id,
+          location: selectedCustomer.location,
         },
       });
       console.log("order sent");
-      createNotification("sent");
+      this.createNotification("sent");
     } catch (error) {
       console.log(error);
-      createNotification("error");
+      this.createNotification("error");
     }
   };
 
@@ -81,7 +82,7 @@ function Customer() {
         <div>
           <input
             id="itemSize"
-            name="itemSize"
+            name="gasSize"
             type="size"
             required
             onChange={(e) => setSize(e.target.value)}

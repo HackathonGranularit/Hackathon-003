@@ -1,4 +1,5 @@
 import { NotificationManager } from "react-notifications";
+import "react-notifications/dist/react-notifications.css";
 
 function createNotification(type) {
   return () => {
