@@ -1,3 +1,4 @@
+//@ts-check
 const getDistance = require('../integrations/gcp');
 const asyncHandler = require('../middleware/async');
 const Order = require('../models/Orders');
