@@ -86,7 +86,19 @@ module.exports.modifyOrder = asyncHandler(async(req,res,next) => {
         res.status(404).json({ data: `Order id ${id} not found` });
       }
       if(req.body.state === 'Dispatched'){
-        sendEmail(`Dispatched order: ${id} `)
+        const message = {
+            from: "waruodaniel@gmail.com",
+            to: req.body.email,
+            subject: "order Received",
+            text: `This order has been received: ${JSON.stringify(order)}`
+          }
+          const onSuccess = () => {
+            console.log("I am SUCCESS")
+          }
+          const onFail = () => {
+        
+          }
+          sendEmail(message, onSuccess, onFail)
         res.status(200).json({ success: true});
       }
       res.status(200).json({ success: true, data: order });
