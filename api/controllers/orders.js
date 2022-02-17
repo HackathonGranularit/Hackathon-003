@@ -23,7 +23,20 @@ module.exports.createOrder = asyncHandler(async (req,res,next) => {
     }
     console.log(order)
     const createdOrder = await Order.create(order)
-    sendEmail(`Created order:${JSON.stringify(createdOrder)}`)
+    // sendEmail(`Created order:${JSON.stringify(createdOrder)}`)
+    const message = {
+        from: "waruodaniel@gmail.com",
+        to: "danielavexus@gmail.com",
+        subject: "Test GRANULAR HACKATHON",
+        text: "We are TESTING THIS"
+      }
+      const onSuccess = () => {
+        console.log("I am SUCCESS")
+      }
+      const onFail = () => {
+    
+      }
+      sendEmail(message, onSuccess, onFail)
     res.status(201).json({ success: true, data: createdOrder });
 
 })

@@ -11,19 +11,20 @@ let transporter = nodemailer.createTransport({
 })
 
 
-const sendEmail = async (message, onSuccess, onFail) => {
+const sendEmail = (message, onSuccess, onFail) => {
 
       // send mail with defined transport object
-  await transporter.sendMail({
-    from: 'waruodaniel@gmail.com', // sender address
-    to: "wambu43@gmail", // list of receivers
-    subject: "Created Order", // Subject line
-    text: message, // plain text body
-  }).catch((err) => {
-      console.log(err)
-  })
-
-  
+ 
+  transporter.sendMail(message, function (err, info) {
+      if (err) {
+        console.log(err)
+        onSuccess(err)
+      } else {
+        console.log(info)
+        onFail(info);
+      }
+    }
+  )
 }
 
 module.exports= sendEmail
