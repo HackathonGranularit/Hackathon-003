@@ -34,7 +34,9 @@ const OptionContent = ({person, active}) => {
   )
 }
 export default function SelectorBox({people, selectedCustomer, setSelectedCustomer}) {
-  selectedCustomer = selectedCustomer || people[0]
+  selectedCustomer = selectedCustomer || {
+    name: 'Select Customer',
+  }
   return (
     <Listbox value={selectedCustomer} onChange={setSelectedCustomer}>
       {({open}) => (
@@ -58,6 +60,19 @@ export default function SelectorBox({people, selectedCustomer, setSelectedCustom
             >
               <Listbox.Options
                 className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+                <Listbox.Option
+                  className={({active}) =>
+                    classNames(
+                      active ? 'text-gray-800  ' : 'text-gray-900',
+                      'cursor-default select-none relative py-2 pl-3 pr-9'
+                    )
+                  }
+                  value={undefined}
+                >
+                  <OptionContent active={false} person={{
+                    name: 'Select Customer',
+                  }}/>
+                </Listbox.Option>
                 {
                   people.map((person) => (
                     <Listbox.Option

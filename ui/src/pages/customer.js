@@ -7,23 +7,20 @@ import SelectorBox from "../components/SelectorBox";
 // this is the default customer array
 const customerArr = [
   {
-    id: undefined,
-    name: 'Select Customer',
-  },
-  {
     id: 999,
     name: 'Daniel King',
+    email:'waruodaniel@gmail.com'
   },
   {
     id: 888,
     name: 'King Julian',
+    email:'kingjulian@gmail.com'
   },
 ]
 
 function Customer() {
   // this is the state for the customer array
-  const [selectedCustomer, setSelectedCustomer] = useState(customerArr[0])
-
+  const [selectedCustomer, setSelectedCustomer] = useState(undefined)
   return (
     <MainDiv>
       <TopDiv><h3>Make an order (Team 1 Branch)</h3>
@@ -46,6 +43,7 @@ function Customer() {
           name="customerID"
           type="name"
           required
+          defaultValue={selectedCustomer && selectedCustomer.id}
           className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Customer ID - should be filled automatically"
         />
@@ -54,14 +52,16 @@ function Customer() {
           name="item-name"
           type="name"
           required
+          defaultValue={selectedCustomer && selectedCustomer.name}
           className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Customer Name - should be filled automatically"
         />
         <input
-          id="item-name"
-          name="item-name"
-          type="name"
+          id="item-email"
+          name="item-email"
+          type="email"
           required
+          defaultValue={selectedCustomer && selectedCustomer.email}
           className="mt-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Customer Email - should be filled automatically"
         />
