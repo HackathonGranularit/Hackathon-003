@@ -1,26 +1,33 @@
 // this will render the vendor page
 
-import React from "react";
+
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
-const orders = [
-  {
-    orderID: 238293,
-    gasSize: '13kg',
-    state: 'New',
-    distance: 23,
-    customerID: 82782 },
-    {
-      orderID: 238293,
-      gasSize: '13kg',
-      state: 'New',
-      distance: 22,
-      customerID: 82782 }
+// const orders = [
+//   {
+//     orderID: 238293,
+//     gasSize: '13kg',
+//     state: 'New',
+//     distance: 23,
+//     customerID: 82782 },
+//     {
+//       orderID: 238293,
+//       gasSize: '13kg',
+//       state: 'New',
+//       distance: 22,
+//       customerID: 82782 }
       
     
-]
+// ]
 
 function Vendor() {
+  const[orders, setOrders] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:8999/api/customers')
+      .then(response => response.json())
+      .then(data => setOrders(data.data))
+  })
   return (
     <MainDiv>
       <h3>Vendor</h3>

@@ -23,12 +23,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express()
-var corsOptions = {
-    origin: "http://localhost:8081"
-  };
-  app.use(cors(corsOptions));
-  // parse requests of content-type - application/json
-  app.use(bodyParser.json());
+app.use(cors());
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
 //Body parser
 app.use(express.json());
 
@@ -36,31 +33,15 @@ app.use(express.json());
 
 require("./config/db")
 
-const port = 8999
+const port = 8080
 
-app.get("/", (req, res) => {
 
-  const message = {
-    from: "waruodaniel@gmail.com",
-    to: "danielavexus@gmail.com",
-    subject: "Test GRANULAR HACKATHON",
-    text: "We are TESTING THIS"
-  }
-  const onSuccess = () => {
-    console.log("I am SUCCESS")
-  }
-  const onFail = () => {
-
-  }
-  sendEmail(message, onSuccess, onFail)
-
-  res.send("Hello World!")
-})
 const customer = require('./routes/customers')
-const {sendEmail} = require("./helpers");
+const order = require('./routes/orders')
 const Console = require("console");
 
 app.use('/api/customers', customer)
+app.use('/api/orders', order)
 
 
 app.listen(port, () => {
