@@ -2,6 +2,7 @@ const Customer = require("../models/Customer");
 
 //This controller gets all our customers
 const getAllCustomers = async (req, res) => {
+  console.log("getAllCustomers");
   try {
     const allCustomers = await Customer.find();
     res.status(200).json(allCustomers);

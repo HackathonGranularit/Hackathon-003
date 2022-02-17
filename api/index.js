@@ -23,18 +23,17 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require("body-parser");
 const apiRouter = require('./routes/router.api');
 
 const app = express();
+app.use(bodyParser.json());
 
-const port = process.env.PORT|8000;
+const port = 8000;
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
-
-//Allow our api to return json
-app.use(express.json());
 //Add our api router
 app.use('/api', apiRouter);
 
