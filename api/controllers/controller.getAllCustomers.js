@@ -8,9 +8,9 @@ const getAllCustomers = async (req, res) => {
     res.status(200).json(allCustomers);
   } catch (e) {
       //Catch any errors 
-    res.status(500).res.json({ message: 'Something wrong happened' });
+    res.status(500).json({ message: 'Something wrong happened' });
     console.error(e); 
-    }
+  }
 };
 
-module.exports = {getAllCustomers};
+module.exports = getAllCustomers;

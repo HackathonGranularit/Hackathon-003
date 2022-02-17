@@ -29,13 +29,17 @@ const apiRouter = require('./routes/router.api');
 const app = express();
 app.use(bodyParser.json());
 
-const port = 3000;
+const port = 3000 ||process.env.PORT;
 
+//Default route
 app.get('/', (req, res) => {
     res.send('Hello World!');
-})
+});
 //Add our api router
 app.use('/api', apiRouter);
+
+//Add not found handler
+app.use((req, res) => res.status(404).json({ message: "404 Route not found" }));
 
 
 const startApp = () => {
@@ -50,7 +54,6 @@ const startApp = () => {
             console.error(e);
         });
 }
-
 startApp();
 
 
