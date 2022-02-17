@@ -13,7 +13,7 @@ module.exports.createOrder = asyncHandler(async (req,res,next) => {
     }
 
     const createdOrder = Order.create(order)
-    res.status(201).json({ success: true, data: order });
+    res.status(201).json({ success: true, data: createdOrder });
 
 })
 
