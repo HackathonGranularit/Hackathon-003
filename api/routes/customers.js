@@ -9,9 +9,6 @@ router.get('/', (req,res) => {
 router.get('/:id', (req,res) => {
     getCustomerById(req,res)
 })
-router.get('/mail/:id', (req,res) => {
-    sendEmail(req.res)
-})
 
 // router.route('/:id').get(getCustomerById)
 
