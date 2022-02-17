@@ -3,17 +3,32 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
+import axios from 'axios';
+
 
 
 function Customer() {
   // this is the state for the customer array
   const [selectedCustomer, setSelectedCustomer] = useState(undefined)
   const [customers, setCustomers] = useState([])
+  const handleSubmit = async() => {  
+    try {
+      // make axios post request
+      const response = await axios({
+        method: "post",
+        url: "/api/login",
+        data: selectedCustomer,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     fetch('http://localhost:8999/api/customers')
       .then(response => response.json())
-      .then(data => setCustomers(data.data))
+      .then(data => setCustomers(data.data));
   })
   return (
     <MainDiv>
@@ -23,6 +38,7 @@ function Customer() {
                        selectedCustomer={selectedCustomer}
                        setSelectedCustomer={setSelectedCustomer}/></div>
       </TopDiv>
+      <form onSubmit={handleSubmit}>
       <div>
         <input
           id="itemName"
@@ -67,7 +83,7 @@ function Customer() {
             Submit
           </button>
         </div>
-      </div>
+      </div></form>
     </MainDiv>
   );
 }

@@ -38,8 +38,6 @@ const port = 8080
 const customer = require("./routes/customers")
 const order = require("./routes/orders")
 const vendor = require("./routes/vendors")
-// const { sendEmail } = require("./helpers");
-// const Console = require("console");
 
 app.use("/api/customers", customer)
 app.use("/api/orders", order)
