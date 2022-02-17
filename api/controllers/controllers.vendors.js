@@ -1,28 +1,34 @@
 const Vendor = require("../models/Vendor.js");
 
-const getAllVendors = (req, res) => {
-  Vendor.find()
-    .then((vendors) => {
-      res.json(vendors);
-    })
-    .catch((e) => {
-      res.status(500).json({
-        message: "Something went wrong",
-      });
+const getAllVendors = async (req, res) => {
+  try {
+    const vendors = await Vendor.find();
+    res.json({
+      msg: "Success",
+      status: 200,
+      vendors,
     });
+  } catch (error) {
+    res.status(500).json({
+      message: `Something went wrong`,
+    })
+  }
 };
 
-const getSingleVendor = (req, res) => {
+const getSingleVendor = async(req, res) => {
   const vendorId = req.params.id;
-  Vendor.findById(vendorId)
-    .then((vendor) => {
-      res.json(vendor);
+  try {
+    const vendor = await Vendor.findById(vendorId);
+    res.json({
+      msg: "Success",
+      status: 200,
+      vendor,
     })
-    .catch((e) => {
-      res.status(500).json({
-        message: "Something went wrong",
-      });
+  } catch (error) {
+    res.status(500).json({
+      message: `Vendor with that an id of ${vendorId} does not exist`,
     });
+  };
 };
 
 module.exports = {
