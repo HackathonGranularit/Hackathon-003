@@ -1,13 +1,10 @@
 // this will render the customer page
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
 import axios from "axios";
-import {
-  NotificationManager,
-  NotificationContainer,
-} from "react-notifications";
+import {NotificationContainer, NotificationManager,} from "react-notifications";
 import "react-notifications/dist/react-notifications.css";
 
 function Customer() {
@@ -21,16 +18,17 @@ function Customer() {
       // make axios post request
       await axios({
         method: "post",
-        url: `${process.env.REACT_APP_BASE_URL}/api/orders/`,
+        url: `${process.env.REACT_APP_BASE_URL}/api/orders`,
         data: {
-          size,
-          customer: selectedCustomer,
+          gasSize:size,
+          customerID: selectedCustomer.id,
+          location:selectedCustomer.location
         },
       });
       createNotification("sent");
     } catch (error) {
       console.log(error);
-      createNotification("error");
+      this.createNotification("error");
     }
   };
 
@@ -67,11 +65,11 @@ function Customer() {
           />
         </div>
       </TopDiv>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <div>
+        <form onSubmit={handleSubmit}>
           <input
             id="itemSize"
-            name="itemSize"
+            name="gasSize"
             type="size"
             required
             onChange={(e) => setSize(e.target.value)}
@@ -125,9 +123,9 @@ function Customer() {
           >
             Submit
           </button>
-        </div>
-      </form>
-      <NotificationContainer />
+        </form>
+      </div>
+      <NotificationContainer/>
     </MainDiv>
   );
 }
