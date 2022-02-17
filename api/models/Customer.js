@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = require("api/config/db.js")
+const db = require("../config/db.js")
 const customerSchema = mongoose.Schema({
   name: {
     type: String,

@@ -2,6 +2,7 @@ const Customer = require('../models/Customer')
 
 const asyncHandler = require('../middleware/async');
 
+
 module.exports.getCustomers = asyncHandler(async (req,res,next) => {
     const customers = await Customer.find();
     res
