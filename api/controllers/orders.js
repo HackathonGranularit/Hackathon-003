@@ -18,8 +18,7 @@ module.exports.createOrder = asyncHandler(async (req,res,next) => {
     const order = {
         gasSize:req.body.gasSize,
         customerId:req.body.customerId,
-        distance:distance,
-        orderId: 12
+        distance:distance
     }
     console.log(order)
     const createdOrder = await Order.create(order)
