@@ -13,24 +13,25 @@
 // 4. A route to get all the orders
 // 5. A route to send out emails
 
-
 // Additional Info:
 // For the distance calculation, you can do it on the client side or the server side, the choice is yours.
 // You have the creative freedom to choose your own email service that you can use to send out emails. (Just dont complicate it too much, you have a time constraint)
 
-
 // import express
-const express = require('express');
+const express = require("express")
 
-const app = express();
-const port = 8080;
+const app = express()
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+//connect to db
+
+require("./config/db")
+
+const port = 8000
+
+app.get("/", (req, res) => {
+  res.send("Hello World!")
 })
 
 app.listen(port, () => {
-    console.log(`api running on port ${port}`);
+  console.log(`api running on port ${port}`)
 })
-
-
