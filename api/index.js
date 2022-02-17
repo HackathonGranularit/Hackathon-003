@@ -23,9 +23,12 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require("body-parser");
 const apiRouter = require('./routes/router.api');
 
 const app = express();
+app.use(bodyParser.json());
+
 const port = 3000;
 
 app.get('/', (req, res) => {
