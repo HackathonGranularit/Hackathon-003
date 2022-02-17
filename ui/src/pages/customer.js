@@ -32,7 +32,7 @@ function Customer() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5010/api/customers")
+    fetch("https://team2-api-hackathon-2022.onrender.com/api/customers")
       .then(res => res.json())
       .then(data => {
         setAllCustomers(data)
