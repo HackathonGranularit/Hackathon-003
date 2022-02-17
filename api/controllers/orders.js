@@ -1,3 +1,4 @@
+const asyncHandler = require('../middleware/async');
 const Order = require('../models/Orders')
 
 module.exports.createOrder = asyncHandler(async (req,res,next) => {
@@ -12,6 +13,15 @@ module.exports.createOrder = asyncHandler(async (req,res,next) => {
     }
 
     const createdOrder = Order.create(order)
-    res.status(201).json({ success: true, data: order });
+    res.status(201).json({ success: true, data: createdOrder });
 
+})
+
+
+module.exports.getOrderById = asyncHandler((req,res,next) => {
+    if(req.params.id){
+        res.status(400).json({ success: true, data: 'Missing id' });
+    }
+    const order = Order.findById(req.params.id)
+    res.status(201).json({ success: true, data: order });
 })
