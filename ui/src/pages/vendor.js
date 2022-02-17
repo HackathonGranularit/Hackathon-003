@@ -24,7 +24,7 @@ import styled from "styled-components";
 function Vendor() {
   const[orders, setOrders] = useState([])
   useEffect(() => {
-    fetch('http://localhost:8999/api/customers')
+    fetch('http://localhost:8080/api/customers')
       .then(response => response.json())
       .then(data => setOrders(data.data))
   })
