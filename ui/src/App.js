@@ -12,7 +12,7 @@ function App() {
         <Route exact path='/' element={<Customer />} />
       </Routes>
       </BrowserRouter>
-      
+
   );
 }
 
