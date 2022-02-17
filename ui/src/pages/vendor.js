@@ -2,30 +2,28 @@
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
-// const orders = [
-//   {
-//     orderID: 238293,
-//     gasSize: '13kg',
-//     state: 'New',
-//     distance: 23,
-//     customerID: 82782 },
-//     {
-//       orderID: 238293,
-//       gasSize: '13kg',
-//       state: 'New',
-//       distance: 22,
-//       customerID: 82782 }
-
-// ]
 
 function Vendor() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8999/api/orders")
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/orders`)
       .then((response) => response.json())
       .then((data) => setOrders(data.data));
   }, []);
+
+  const handleOnClick = order => {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/orders/${order._id}`
+    axios.put(url,{...order,
+      state:"Dispatched"
+    })
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/orders`)
+      .then((response) => response.json())
+      .then((data) => setOrders(data.data));
+  }
+
+
   return (
     <MainDiv>
       <h3>Vendor</h3>
@@ -78,7 +76,7 @@ function Vendor() {
                         <div className="flex items-center">
                           <div className="ml-4">
                             <div className="text-sm text-gray-500">
-                              {order.orderID}
+                              {order.orderId || order._id}
                             </div>
                           </div>
                         </div>
@@ -93,15 +91,16 @@ function Vendor() {
                           {order.distance}km
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {order.state}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {order.customerID}
+                        {order.customerId}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a
                           href="#"
+                          onClick={ () => handleOnClick(order)}
                           className="text-indigo-600 hover:text-indigo-900"
                         >
                           Dispatch Order
