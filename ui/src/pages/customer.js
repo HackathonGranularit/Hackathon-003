@@ -28,7 +28,7 @@ function Customer() {
       createNotification("sent");
     } catch (error) {
       console.log(error);
-      createNotification("error");
+      this.createNotification("error");
     }
   };
 
@@ -69,7 +69,7 @@ function Customer() {
         <form onSubmit={handleSubmit}>
           <input
             id="itemSize"
-            name="itemSize"
+            name="gasSize"
             type="size"
             required
             onChange={(e) => setSize(e.target.value)}

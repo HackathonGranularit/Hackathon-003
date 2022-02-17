@@ -10,8 +10,11 @@ let transporter = nodemailer.createTransport({
   }
 })
 
+
 const sendEmail = (message, onSuccess, onFail) => {
 
+      // send mail with defined transport object
+ 
   transporter.sendMail(message, function (err, info) {
       if (err) {
         console.log(err)
