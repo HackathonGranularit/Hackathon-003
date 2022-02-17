@@ -36,24 +36,7 @@ require("./config/db")
 
 const port = 8999
 
-app.get("/", (req, res) => {
 
-  const message = {
-    from: "waruodaniel@gmail.com",
-    to: "danielavexus@gmail.com",
-    subject: "Test GRANULAR HACKATHON",
-    text: "We are TESTING THIS"
-  }
-  const onSuccess = () => {
-    console.log("I am SUCCESS")
-  }
-  const onFail = () => {
-
-  }
-  sendEmail(message, onSuccess, onFail)
-
-  res.send("Hello World!")
-})
 const customer = require('./routes/customers')
 const order = requires('./routes/order')
 const {sendEmail} = require("./helpers");
