@@ -3,43 +3,36 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const ordersObj = [
-  {
-    orderID: 238293,
-    gasSize: '13kg',
-    state: 'New',
-    distance: 23,
-    customerID: 82782
-  },
-  {
-    orderID: 238293,
-    gasSize: '13kg',
-    state: 'New',
-    distance: 23,
-    customerID: 82782
-  },
-  {
-    orderID: 238293,
-    gasSize: '13kg',
-    state: 'New',
-    distance: 23,
-    customerID: 82782
-  }
-]
-
 function Vendor() {
   const [orders, setOrders] = useState([])
+  const baseAPIUrl = "http://localhost:8000/api"
 
-  useEffect(() => {
-    fetch(
-      "url")
-      .then((res) => res.json())
-      .then((data) => {
-        // setOrders(data);
-      })
+  useEffect(async () => {
 
-      setOrders(ordersObj);
-  }, [orders])
+    const getVendor = async () => {
+      const response = await fetch(`${baseAPIUrl}/vendor`);
+      const vendor = await response.json();
+      return vendor;
+    }
+
+    const getDistance = async (vendorLocation, customerLocation) => {
+      
+    }
+
+    const getOrders = async () => {
+      const response = await fetch(`${baseAPIUrl}/orders`);
+      const order = await response.json();
+      return order
+    }
+
+    // const vendors = await getVendor();
+    // const distance = await getDistance("d","");
+    const orders = await getOrders();
+    console.log(orders)
+
+    setOrders(orders);
+
+  }, [])
 
   return (
     <MainDiv>
@@ -105,7 +98,7 @@ function Vendor() {
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.state}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.customerID}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.customerId}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="#" className="text-indigo-600 hover:text-indigo-900">
                           Dispatch Order
