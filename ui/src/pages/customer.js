@@ -1,13 +1,10 @@
 // this will render the customer page
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
 import axios from "axios";
-import {
-  NotificationManager,
-  NotificationContainer,
-} from "react-notifications";
+import {NotificationContainer, NotificationManager,} from "react-notifications";
 import "react-notifications/dist/react-notifications.css";
 
 function Customer() {
@@ -21,15 +18,14 @@ function Customer() {
       // make axios post request
       await axios({
         method: "post",
-        url: "http://localhost:8999/api/orders/",
+        url: `${process.env.REACT_APP_BASE_URL}/api/orders`,
         data: {
-          gasSize: size,
-          customerId: selectedCustomer.id,
-          location: selectedCustomer.location,
+          gasSize:size,
+          customerID: selectedCustomer.id,
+          location:selectedCustomer.location
         },
       });
-      console.log("order sent");
-      this.createNotification("sent");
+      createNotification("sent");
     } catch (error) {
       console.log(error);
       this.createNotification("error");
@@ -37,26 +33,17 @@ function Customer() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8999/api/customers")
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/customers`)
       .then((response) => response.json())
       .then((data) => setCustomers(data.data));
   }, []);
 
   const createNotification = (type) => {
     return () => {
+      // eslint-disable-next-line default-case
       switch (type) {
-        case "info":
-          NotificationManager.info("Order submitted");
-          break;
         case "sent":
           NotificationManager.success("Order sent to vendor");
-          break;
-        case "warning":
-          NotificationManager.warning(
-            "Warning message",
-            "Close after 3000ms",
-            3000
-          );
           break;
         case "error":
           NotificationManager.error("Error message", "Click me!", 5000, () => {
@@ -78,8 +65,8 @@ function Customer() {
           />
         </div>
       </TopDiv>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <div>
+        <form onSubmit={handleSubmit}>
           <input
             id="itemSize"
             name="gasSize"
@@ -136,9 +123,9 @@ function Customer() {
           >
             Submit
           </button>
-        </div>
-      </form>
-      <NotificationContainer />
+        </form>
+      </div>
+      <NotificationContainer/>
     </MainDiv>
   );
 }
