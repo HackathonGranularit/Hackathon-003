@@ -31,9 +31,6 @@ const port = 3000;
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
-
-//Allow our api to return json
-app.use(express.jso);
 //Add our api router
 app.use('/api', apiRouter);
 
