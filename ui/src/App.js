@@ -1,18 +1,17 @@
-import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Customer from './pages/customer';
-import Vendor from './pages/vendor';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Customer from "./pages/customer";
+import Vendor from "./pages/vendor";
 
 function App() {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/api/customer" element={<Customer />} />
-        <Route path='/vendor' element={<Vendor />} />
-        <Route exact path='/' element={<Customer />} />
+        <Route path="/vendor" element={<Vendor />} />
+        <Route exact path="/" element={<Customer />} />
       </Routes>
-      </BrowserRouter>
-      
+    </BrowserRouter>
   );
 }
 

@@ -3,9 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
-import axios from 'axios';
-
-
+import axios from "axios";
 
 function Customer() {
   // this is the state for the customer array
@@ -17,26 +15,30 @@ function Customer() {
       await axios({
         method: "post",
         url: "/api/orders/",
-        data: selectedCustomer
+        data: selectedCustomer,
       });
-      console.log("order sent")
+      console.log("order sent");
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/customers')
-      .then(response => response.json())
-      .then(data => setCustomers(data.data));
-  },[]);
+    fetch("http://localhost:8080/api/customers")
+      .then((response) => response.json())
+      .then((data) => setCustomers(data.data));
+  }, []);
   return (
     <MainDiv>
-      <TopDiv><h3>Make an order (Team 1 Branch)</h3>
+      <TopDiv>
+        <h3>Make an order (Team 1 Branch)</h3>
         <div>
-          <SelectorBox people={customers}
+          <SelectorBox
+            people={customers}
             selectedCustomer={selectedCustomer}
-            setSelectedCustomer={setSelectedCustomer} /></div>
+            setSelectedCustomer={setSelectedCustomer}
+          />
+        </div>
       </TopDiv>
       <form onSubmit={handleSubmit}>
         <div>
@@ -83,7 +85,8 @@ function Customer() {
               Submit
             </button>
           </div>
-        </div></form>
+        </div>
+      </form>
     </MainDiv>
   );
 }
@@ -99,34 +102,34 @@ const MainDiv = styled.div`
   margin-top: 10em;
 
   > h3 {
-      font-size: 1.2em;
-      font-weight: 600;
+    font-size: 1.2em;
+    font-weight: 600;
   }
 
   > div {
-      margin-top: 2em;
-      width: 35%;
+    margin-top: 2em;
+    width: 35%;
 
-      > div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;  
-        >  button {
-            width: 100%;
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      > button {
+        width: 100%;
       }
     }
   }
 `;
 
 const TopDiv = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 
-> h3 {
+  > h3 {
     font-size: 1.2em;
     font-weight: 600;
-}
-`
+  }
+`;
