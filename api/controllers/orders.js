@@ -52,3 +52,24 @@ module.exports.getOrders = asyncHandler(async(req,res,next) => {
     const orders = await Order.find()
     res.status(200).json({ success: true, data: orders });
 })
+
+module.exports.modifyOrder = asyncHandler(async(req,res,next) => {
+    const id = req.params.id
+    if(!id){
+        res.status(400).json({ data: 'Missing id' });
+    }
+
+    const order = await Order.findByIdAndUpdate(id,req.body,{
+        new: true,
+        runValidators: true
+      })
+      .catch(() => {
+        res.status(500).json({ data: 'Something went wrong updating the order' });
+      })
+
+      if(!order){
+        res.status(404).json({ data: `Order id ${id} not found` });
+      }
+
+      res.status(200).json({ success: true, data: order });
+})
