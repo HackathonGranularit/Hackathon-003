@@ -9,7 +9,14 @@ const orders = [
     gasSize: '13kg',
     state: 'New',
     distance: 23,
-    customerID: 82782 }
+    customerID: 82782 },
+    {
+      orderID: 238293,
+      gasSize: '13kg',
+      state: 'New',
+      distance: 22,
+      customerID: 82782 }
+      
     
 ]
 
