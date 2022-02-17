@@ -20,17 +20,38 @@
 
 
 // import express
+require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
+const apiRouter = require('./routes/router.api');
 
 const app = express();
-const port = 8080;
+const port = 3000;
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
-app.listen(port, () => {
-    console.log(`api running on port ${port}`);
-})
+//Allow our api to return json
+app.use(express.jso);
+//Add our api router
+app.use('/api', apiRouter);
+
+
+const startApp = () => {
+    mongoose.connect(process.env.MONGOURI)
+        .then(() => {
+            //Only start our app when we are able to connect to database
+            app.listen(port, () => {
+                console.log(`api running on port ${port}`);
+            });
+        }).catch((e) => {
+            console.error('Server could not start');
+            console.error(e);
+        });
+}
+
+startApp();
+
 
 
