@@ -2,7 +2,6 @@ const asyncHandler = require('../middleware/async');
 const Order = require('../models/Orders')
 
 module.exports.createOrder = asyncHandler(async (req,res,next) => {
-
     const order = {
         gasSize:req.body.gasSize,
         state:req.body.state,

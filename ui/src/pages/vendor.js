@@ -22,10 +22,10 @@ import styled from "styled-components";
 function Vendor() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8080/api/customers")
+    fetch("http://localhost:8999/api/orders")
       .then((response) => response.json())
       .then((data) => setOrders(data.data));
-  });
+  }, []);
   return (
     <MainDiv>
       <h3>Vendor</h3>

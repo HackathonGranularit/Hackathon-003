@@ -4,6 +4,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SelectorBox from "../components/SelectorBox";
 import axios from "axios";
+import {
+  NotificationManager,
+  NotificationContainer,
+} from "react-notifications";
+import "react-notifications/dist/react-notifications.css";
 
 function Customer() {
   // this is the state for the customer array
@@ -16,23 +21,50 @@ function Customer() {
       // make axios post request
       await axios({
         method: "post",
-        url: "http://localhost:8080/api/orders/",
+        url: "http://localhost:8999/api/orders/",
         data: {
           size,
           customer: selectedCustomer,
         },
       });
       console.log("order sent");
+      createNotification("sent");
     } catch (error) {
       console.log(error);
+      createNotification("error");
     }
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/customers")
+    fetch("http://localhost:8999/api/customers")
       .then((response) => response.json())
       .then((data) => setCustomers(data.data));
   }, []);
+
+  const createNotification = (type) => {
+    return () => {
+      switch (type) {
+        case "info":
+          NotificationManager.info("Order submitted");
+          break;
+        case "sent":
+          NotificationManager.success("Order sent to vendor");
+          break;
+        case "warning":
+          NotificationManager.warning(
+            "Warning message",
+            "Close after 3000ms",
+            3000
+          );
+          break;
+        case "error":
+          NotificationManager.error("Error message", "Click me!", 5000, () => {
+            alert("Order could not be sent");
+          });
+          break;
+      }
+    };
+  };
   return (
     <MainDiv>
       <TopDiv>
@@ -98,12 +130,14 @@ function Customer() {
           />
           <button
             type="submit"
+            onClick={createNotification("info")}
             className="mt-4 w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
           >
             Submit
           </button>
         </div>
       </form>
+      <NotificationContainer />
     </MainDiv>
   );
 }
