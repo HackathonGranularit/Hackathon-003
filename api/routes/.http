@@ -9,3 +9,14 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/api/
 Content-Type: application/json
+
+###
+POST  http://localhost:8000/api/email
+Content-Type: application/json
+
+{
+    "sender":"mwaijohng@gmail.com",
+    "receiver":"sender@email.com",
+    "subject":"Test Email",
+    "email_body":"Test Body"
+}
