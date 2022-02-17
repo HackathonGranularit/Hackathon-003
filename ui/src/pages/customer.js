@@ -32,7 +32,7 @@ function Customer() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5010/api/customers")
+    fetch("http://localhost:8000/api/customers")
       .then(res => res.json())
       .then(data => {
         setAllCustomers(data)
