@@ -23,12 +23,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express()
-var corsOptions = {
-    origin: "http://localhost:8999"
-  };
-  app.use(cors());
-  // parse requests of content-type - application/json
-  app.use(bodyParser.json());
+app.use(cors());
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
 //Body parser
 app.use(express.json());
 
@@ -57,10 +54,12 @@ app.get("/", (req, res) => {
   res.send("Hello World!")
 })
 const customer = require('./routes/customers')
-const {sendEmail} = require("./helpers");
+const order = requires('./routes/order')
+const { sendEmail } = require("./helpers");
 const Console = require("console");
 
 app.use('/api/customers', customer)
+app.use('/api/orders', order)
 
 
 app.listen(port, () => {
