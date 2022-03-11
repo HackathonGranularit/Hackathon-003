@@ -76,12 +76,12 @@ The Links to the hosted branches are in the 'Important Links' section of this do
 ### Important Links
 * MongoDB URI: 
 
-         For TEAM 1 - mongodb+srv://dev:v90jHR3AltOdE944@cluster0.4jyb3.mongodb.net/team1?retryWrites=true&w=majority
-         For TEAM 2 - mongodb+srv://dev:v90jHR3AltOdE944@cluster0.4jyb3.mongodb.net/team2?retryWrites=true&w=majority
+         For TEAM 1 - [DELETED]
+         For TEAM 2 - [DELETED]
 
 * GOOGLE MAPS API:
 
-         AIzaSyBs8oFLQriZkDsje3Dov_BiZG1w6C_jENk
+         [DELETED]
 
 * The Hosted Links:
 
